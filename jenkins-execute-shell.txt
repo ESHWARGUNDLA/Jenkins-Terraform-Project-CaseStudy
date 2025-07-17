@@ -1,0 +1,29 @@
+# Jenkins Execute Shell Build Steps - Copy this into your Jenkins job
+
+# Basic Terraform deployment script for Jenkins Execute Shell section
+# Replace this with the actual commands you want to run in Jenkins
+
+echo "Starting Terraform deployment process..."
+
+# Set Azure credentials (configure these as Jenkins credentials)
+export ARM_CLIENT_ID=${AZURE_CLIENT_ID}
+export ARM_CLIENT_SECRET=${AZURE_CLIENT_SECRET}
+export ARM_SUBSCRIPTION_ID=${AZURE_SUBSCRIPTION_ID}
+export ARM_TENANT_ID=${AZURE_TENANT_ID}
+
+# Initialize Terraform
+terraform init
+
+# Validate configuration
+terraform validate
+
+# Create execution plan
+terraform plan -out=tfplan
+
+# Apply changes
+terraform apply tfplan
+
+# Display outputs
+terraform output
+
+echo "Terraform deployment completed successfully!"
